@@ -8,8 +8,7 @@ A novel FPGA accelerator for sparse MTTKRP (spMTTKRP) to maximally exploit the s
     ├── FLYCOO                    # Converts sparse tensors in Coordinates (COO) format to FLYCOO
     ├── FPGA                      # Verilog source codes for the implementation
     │   ├── ip                    
-    │   ├── src                   
-    │   └── unit                
+    │   ├── src                                   
     ├── LICENSE
     └── README.md
 
