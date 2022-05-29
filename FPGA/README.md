@@ -9,6 +9,7 @@ This includes all the hardware design files of our implementation. The design is
 - Include IPs in the ip folder as external IPs to the project
         - The IPs contains FIFOs and external memory interface IPs
 
-## Module Structure (refer to the figure)
+## Module Structure (refer to the figures)
 
-![Screenshot from 2022-05-29 16-51-24](https://user-images.githubusercontent.com/54261529/170896350-14cf999a-e217-40b7-82cf-b327ab6c7cfc.png)
+![Screenshot from 2022-05-29 16-54-18](https://user-images.githubusercontent.com/54261529/170896512-627f91be-3836-4d5f-aae0-ff0f47b9c167.png)
+![Screenshot from 2022-05-29 16-54-39](https://user-images.githubusercontent.com/54261529/170896515-468e5851-962f-46af-8fa6-7f66b672d8d5.png)
