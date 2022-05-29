@@ -2,7 +2,14 @@
 This includes all the hardware design files of our implementation. The design is verfied on Xilinx Alveo U250 FPGA. This work is developed with Xilinx Vivado 2020.2.
 
 ## requirements:
+### Software
     - Xilinx Vivado 2020.2
+### FPGA Device
+    - Alveo U250 Data Center Accelerator Card
+### Target Language
+    - Verilig
+### Top Module name
+    - mttkrp_example_top
 
 ## Setting up the project
 - Include the source files in src folder as sources
