@@ -19,7 +19,7 @@ A novel FPGA accelerator for sparse MTTKRP (spMTTKRP) to maximally exploit the s
 ## Datasets
 We use FROSTT datasets (http://frostt.io/tensors/) for evaluation.
 
-## Experiments to conduct
+## Sample Experiments to conduct
 1. Generate FLYCOO format tensor.
     - Use the scripts in the FLYCOO with any FROSTT dataset
     
