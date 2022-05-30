@@ -7,6 +7,8 @@ input_file_path. For examples on how to run, check out the script semi_alto.sh.
 
 ## Usage:
     python3 semi_alto.py <input_file> <num_dimensions> <mode_axis>
+    
+The input_file should be in COO format following FROSTT dataset
 
 ## requirements:
     - python3
