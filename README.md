@@ -16,6 +16,9 @@ A novel FPGA accelerator for sparse MTTKRP (spMTTKRP) to maximally exploit the s
 1. FPGA Project setup is included in FPGA Folder
 2. FLYCOO folder contains the source codes for the conversion of the datasets to proposed format
 
+## Datasets
+We use FROSTT datasets (http://frostt.io/tensors/) for evaluation.
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
