@@ -5,11 +5,13 @@ Again, the semi_alto score is computed to reorder the rows but is not appended t
 resulting tensor. Note: the output file is currently hardcoded and depends on the 
 input_file_path. For examples on how to run, check out the script semi_alto.sh.
 
-## Usage:
-    python3 semi_alto.py <input_file> <num_dimensions> <mode_axis>
-    
-The input_file should be in COO format following FROSTT dataset
-
 ## requirements:
     - python3
     - pyspark
+
+## Usage:
+    python3 semi_alto.py <input_file> <num_dimensions> <mode_axis>
+
+    input_file: should be in COO format similar to the datasets in FROSTT
+    num_dimensions: Number of dimensions of the input tensor
+    mode_axis: Initial mode of the FLYCOO input required
