@@ -6,15 +6,26 @@ This includes all the hardware design files of our implementation. The design is
     - Xilinx Vivado 2020.2
 #### FPGA Device
     - Alveo U250 Data Center Accelerator Card
-#### Target Language
-    - Verilig
-#### Top Module name
-    - mttkrp_example_top
+#### Language
+    - Verilig + System Verilog
 
 ## Setting up the project
 - Include the source files in src folder as sources
 - Include IPs in the ip folder as external IPs to the project
         - The IPs contains FIFOs and external memory interface IPs
+
+#### Top Module name
+    - mttkrp_example_top
+
+#### Configuring the 3rd party IPs
+
+##### Memory Interface IP
+    - IP Name: DDR4 SDRAM
+    - Instance Name: ddr4_0
+    - Basic: Memory Device Interface Speed (ps): 833
+    - Basic: PHY clock frequency ratio: (4:1) 
+    - Basic: Configuration: RDIMMS
+    - Memory Part: MTA18ASF2G72PZ-2G3
 
 ## Module Structure (refer to the figures)
 
