@@ -24,8 +24,7 @@ We use FROSTT datasets (http://frostt.io/tensors/) for evaluation.
     - Use the scripts in the FLYCOO with any FROSTT dataset
     
 2. Place and Route results of FPGA design
-    - After setting up the FPGA design on Vivado 2020.2 according to the instructions in the readme inside FPGA folder, run "Implementation" on Vivado  
-      software
+    - After setting up the FPGA design on Vivado 2020.2 according to the instructions in the readme inside FPGA folder, run "Implementation" on Vivado software
 
 
 ## License
