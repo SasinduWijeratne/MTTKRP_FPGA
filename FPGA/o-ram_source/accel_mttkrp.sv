@@ -104,66 +104,66 @@ assign out_fact_mat_write_in            = compute_inter_val;
 always @(posedge clk) begin: STATE_MACHINE
     if(~rst) begin
     
-        initialize_internal_mem                 <= {(NUM_INTERNAL_MEM_TENSOR){1'b0}};
-        state                                   <= STATE_INIT;
-        output_factor_matrices_addr_en          <= 0;
-        op_done_ack                             <= 0;
-        out_fact_mat_read_en                    <= 0;
+        initialize_internal_mem                 = {(NUM_INTERNAL_MEM_TENSOR){1'b0}};
+        state                                   = STATE_INIT;
+        output_factor_matrices_addr_en          = 0;
+        op_done_ack                             = 0;
+        out_fact_mat_read_en                    = 0;
 
-        mult_inter_val                          <= 1;
-        compute_inter_val                       <= 0;
-        out_fact_mat_write_en                   <= 0;
+        mult_inter_val                          = 1;
+        compute_inter_val                       = 0;
+        out_fact_mat_write_en                   = 0;
 
-        out_counter                             <= 0;
+        out_counter                             = 0;
 
-        output_to_adder_tree_en                 <= 0;
-        out_counter                             <= 0;
-        ready_receive_tensor                    <= 0;
+        output_to_adder_tree_en                 = 0;
+        out_counter                             = 0;
+        ready_receive_tensor                    = 0;
 
     end else begin
 
-        out_fact_mat_read_addr                  <= base_mode_addr[$clog2(NUM_INTERNAL_MEM_TENSOR)-1 : 0];
-        out_fact_mat_write_addr                 <= base_mode_addr[$clog2(NUM_INTERNAL_MEM_TENSOR)-1 : 0];
+        out_fact_mat_read_addr                  = base_mode_addr[$clog2(NUM_INTERNAL_MEM_TENSOR)-1 : 0];
+        out_fact_mat_write_addr                 = base_mode_addr[$clog2(NUM_INTERNAL_MEM_TENSOR)-1 : 0];
 
-        op_done_ack                             <= 0;
-        output_factor_matrices_addr_en          <= 0;
-        out_fact_mat_read_en                    <= 0;
-        out_fact_mat_write_en                   <= 0;
-        output_to_adder_tree_en                 <= 0;
-        ready_receive_tensor                    <= 0;
+        op_done_ack                             = 0;
+        output_factor_matrices_addr_en          = 0;
+        out_fact_mat_read_en                    = 0;
+        out_fact_mat_write_en                   = 0;
+        output_to_adder_tree_en                 = 0;
+        ready_receive_tensor                    = 0;
 
-        output_to_adder_tree                    <= out_fact_mat_read_out;
+        output_to_adder_tree                    = out_fact_mat_read_out;
 
         case (state)
             STATE_INIT: begin
-                out_counter                             <= 0;
-                initialize_internal_mem                 <= {(NUM_INTERNAL_MEM_TENSOR){1'b0}};
+                out_counter                             = 0;
+                initialize_internal_mem                 = {(NUM_INTERNAL_MEM_TENSOR){1'b0}};
                 if (begining_of_shard) begin
-                    state                               <= STATE_IDLE;
+                    state                               = STATE_IDLE;
                 end
             end
             STATE_IDLE: begin
-                mult_inter_val                          <= 0;
-                compute_inter_val                       <= 0;
-                ready_receive_tensor                    <= 1;
+                mult_inter_val                          = 0;
+                compute_inter_val                       = 0;
+                ready_receive_tensor                    = 1;
 
                 if(tensor_element_en) begin
-                    state                               <= STATE_SEND_ADDR;
-                    output_factor_matrices_addr_en      <= {(TENSOR_DIMENSIONS-2){1'b1}};
+                    state                               = STATE_SEND_ADDR;
+                    output_factor_matrices_addr_en      = {(TENSOR_DIMENSIONS-2){1'b1}};
                 end
             end
             STATE_SEND_ADDR: begin
                 if((&input_factor_matrices_en) & tensor_element_en) begin
-                    state                       <= STATE_INTERMEDIATE_CAPT;
-                    out_fact_mat_read_en        <= 1'b1;
+                    state                       = STATE_INTERMEDIATE_CAPT;
+                    out_fact_mat_read_en        = 1'b1;
                 end
             end
             STATE_INTERMEDIATE_CAPT: begin
-                intermediate_val_keeper         <= out_fact_mat_read_out;
-                state                           <= STATE_COMPUTE;
+                intermediate_val_keeper         = out_fact_mat_read_out;
+                state                           = STATE_COMPUTE;
             end
             STATE_COMPUTE: begin
-                initialize_internal_mem[out_fact_mat_read_addr] <= 1'b1;
+                initialize_internal_mem[out_fact_mat_read_addr] = 1'b1;
 
                 for (J = 0; J < RANK_FACTOR_MATRIX; J = J+1) begin
                     mult_inter_val[J] = input_factor_matrices[0][J];
@@ -184,41 +184,41 @@ always @(posedge clk) begin: STATE_MACHINE
                     end
                 end
 
-                state                         <= STATE_STORE;
+                state                         = STATE_STORE;
 
             end
             STATE_STORE: begin
-                out_fact_mat_write_en       <= 1;
-                state                       <= STATE_DONE;
+                out_fact_mat_write_en       = 1;
+                state                       = STATE_DONE;
             end
             STATE_DONE: begin
-                op_done_ack                 <= 1;
+                op_done_ack                 = 1;
                 if(end_of_shard) begin
-                    state                       <= STATE_OVER;
+                    state                       = STATE_OVER;
                 end 
                 else begin
-                    state                       <= STATE_IDLE;
+                    state                       = STATE_IDLE;
                 end
                 
             end
             STATE_OVER: begin
                 
-                initialize_internal_mem                 <= {(NUM_INTERNAL_MEM_TENSOR){1'b0}};
-                out_fact_mat_read_addr                  <= out_counter;
+                initialize_internal_mem                 = {(NUM_INTERNAL_MEM_TENSOR){1'b0}};
+                out_fact_mat_read_addr                  = out_counter;
 
                 if(adder_tree_ready_to_receive) begin
-                    output_to_adder_tree_en                 <= 1;
-                    out_counter                             <= out_counter + 1;
-                    out_fact_mat_read_en                    <= 1;
+                    output_to_adder_tree_en                 = 1;
+                    out_counter                             = out_counter + 1;
+                    out_fact_mat_read_en                    = 1;
                 end
                 if(out_counter == NUM_INTERNAL_MEM_TENSOR) begin
-                    state                                   <= STATE_INIT;
+                    state                                   = STATE_INIT;
                 end
                 
             end
 
             default: begin
-                state                                   <= STATE_IDLE;
+                state                                   = STATE_IDLE;
             end
 
         endcase
@@ -273,13 +273,13 @@ reg [w-1:0] reg_array [2**n-1:0];
 integer i;
 initial begin
     for( i = 0; i < 2**n; i = i + 1 ) begin
-        reg_array[i] <= 0;
+        reg_array[i] = 0;
     end
 end
 
 always @(posedge clk) begin
     if( read_write == 1 )
-        reg_array[addr] <= data_in;
+        reg_array[addr] = data_in;
     //if( clear == 1 ) begin
         //for( i = 0; i < 2**n; i = i + 1 ) begin
             //reg_array[i] <= 0;
