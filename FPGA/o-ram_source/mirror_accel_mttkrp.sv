@@ -29,7 +29,7 @@ module mirror_accel_mttkrp #(
     parameter TENSOR_DATA_WIDTH         = 32,
     parameter MODE_TENSOR_BLOCK_WIDTH   = 16,
     parameter MODE_TENSOR_ADDR_WIDTH    = 16,
-    parameter NUM_COMPUTE_UNITS         = 4,
+    parameter NUM_COMPUTE_UNITS         = 320,
     parameter COMPUTE_ID                = 0
 )(
     input   wire                                                                                        clk,

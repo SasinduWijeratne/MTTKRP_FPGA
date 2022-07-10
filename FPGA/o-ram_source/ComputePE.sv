@@ -30,7 +30,7 @@ module ComputePE #(
     parameter MODE_TENSOR_ADDR_WIDTH    = 16,
     parameter NUM_OF_SHARDS             = 1024,
     parameter DMA_DATA_WIDTH            = 512,
-    parameter NUM_COMPUTE_UNITS         = 8
+    parameter NUM_COMPUTE_UNITS         = 320
 )(
     input   wire                                                                                        clk,
     input   wire                                                                                        rst,
