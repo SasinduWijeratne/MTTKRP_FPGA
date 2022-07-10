@@ -21,7 +21,7 @@
 
 module ComputePE #(
     parameter TENSOR_WIDTH              = 128,
-    parameter TENSOR_DIMENSIONS         = 4,
+    parameter TENSOR_DIMENSIONS         = 3,
     parameter FACTOR_MATRIX_WIDTH       = 32,
     parameter RANK_FACTOR_MATRIX        = 16,
     parameter NUM_INTERNAL_MEM_TENSOR   = 1024,
@@ -30,7 +30,7 @@ module ComputePE #(
     parameter MODE_TENSOR_ADDR_WIDTH    = 16,
     parameter NUM_OF_SHARDS             = 1024,
     parameter DMA_DATA_WIDTH            = 512,
-    parameter NUM_COMPUTE_UNITS         = 320
+    parameter NUM_COMPUTE_UNITS         = 8
 )(
     input   wire                                                                                        clk,
     input   wire                                                                                        rst,
@@ -48,9 +48,9 @@ module ComputePE #(
     output   reg [$clog2(NUM_COMPUTE_UNITS) : 0]                                                        output_compute_id_factor_matrices,
     output   reg                                                                                        op_done_ack,
     output  wire                                                                                        output_to_adder_tree_en,
-    output  wire [RANK_FACTOR_MATRIX-1 : 0] [FACTOR_MATRIX_WIDTH-1 : 0]                                 output_to_adder_tree,
-    output   wire                                                                                       reordered_tensor_element_en,
-    output   wire [TENSOR_WIDTH-1 : 0]                                                                  reordered_tensor_element // | BL_X | BL_Y | BL_Z | X | Y | Z | VAL |
+    output  wire [RANK_FACTOR_MATRIX-1 : 0] [FACTOR_MATRIX_WIDTH-1 : 0]                                 output_to_adder_tree
+//    output   wire                                                                                       reordered_tensor_element_en,
+//    output   wire [TENSOR_WIDTH-1 : 0]                                                                  reordered_tensor_element // | BL_X | BL_Y | BL_Z | X | Y | Z | VAL |
     );
 
 data_flow_accel_mttkrp 

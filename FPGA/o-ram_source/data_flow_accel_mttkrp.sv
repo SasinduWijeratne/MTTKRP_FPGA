@@ -29,7 +29,7 @@ module data_flow_accel_mttkrp #(
     parameter TENSOR_DATA_WIDTH         = 32,
     parameter MODE_TENSOR_BLOCK_WIDTH   = 16,
     parameter MODE_TENSOR_ADDR_WIDTH    = 16,
-    parameter NUM_COMPUTE_UNITS         = 4
+    parameter NUM_COMPUTE_UNITS         = 3'd4
 )(
     input   wire                                                                                        clk,
     input   wire                                                                                        rst,
